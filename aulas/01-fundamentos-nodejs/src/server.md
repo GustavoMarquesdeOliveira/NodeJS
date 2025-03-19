@@ -13,5 +13,14 @@
 * Uma requisição http é composta de dois principais recursos method e url
 * Vamos obter essas duas informações através do req
 * ![img.png](img.png) GET (metodo method) / (url caminho que foi feito a rquisição)
-* Metedos: GET = buscar um recurso no back-end | POST = Criar um recurso no back-end | PUT = Atualizar um recurso no back-end
+* Metodos: GET = buscar um recurso no back-end | POST = Criar um recurso no back-end | PUT = Atualizar um recurso no back-end
 * (Continuação de cima) PATCH = Atualizar uma informação especifica de um recurso no back-end | DELETE = Deletar um recurso do back-end
+* Stateful = Aplicação que smp vai ter uma informação sendo guardada em memoria, ela depende da memoria, depende das informações salvas em memoria para que continue funcionando
+* Stateless = Mesmo se parar a execução da aplicação os dados, arquivo ou qualquer tipo de funcionamento, vai se manter igual, não vai ter qualquer tipo de problema
+* Não se pode passar uma informação do tipo array em uma requisição, para converter essa array para um string é utilizado o json
+* Para passar que o formato da informação vai ser json, tem que utilizar cabeçalhos
+* Cabeçalhos (REQ/RES) são metadados para que tanto o back end quanto o front end saibam lidar com aquela requisição
+* Eles são informações adicionais do back end para o front end
+* Um conceito bem importante na construção de APIs, que são o http status Code
+
+### Aula 3
