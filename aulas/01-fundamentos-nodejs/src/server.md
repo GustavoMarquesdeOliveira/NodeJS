@@ -22,5 +22,3 @@
 * Cabeçalhos (REQ/RES) são metadados para que tanto o back end quanto o front end saibam lidar com aquela requisição
 * Eles são informações adicionais do back end para o front end
 * Um conceito bem importante na construção de APIs, que são o http status Code
-
-### Aula 3
