@@ -2,9 +2,9 @@
 //     .pipe(process.stdout)
 
 // Importando o Readble e deixando claro que esse recurso é do proprio node:stream
-import {Readable} from 'node:stream'
+import {Readable, Writable} from 'node:stream'
 
-    // Criando a class One... que é uma extensão do Readable (que é um processo de leitura das informações em partes)
+// Criando a class One... que é uma extensão do Readable (que é um processo de leitura das informações em partes)
 class OneToHundredStream extends Readable {
     index = 1
 
@@ -27,5 +27,27 @@ class OneToHundredStream extends Readable {
 
 }
 
+class InverseNumberStream extends TransformStream {
+    _transform(chunk,encoding, callback){
+        const transformed = Number(chunk.toString()) *-1
+
+        callback(null, transformed)
+    }
+}
+
+class MultiplyByTenStream extends Writable {
+
+    _write(chunk, encoding, callback) {
+        // Como o retorno do buf é um buffer, precisa converter ele pra uma string e como vai ser feito uma multiplicação tem
+        // que converter para numero esse resultado
+        console.log(Number(chunk.toString()) * 10 )
+        callback()
+    }
+
+}
+
 // Está lendo a stream e vai mostrar as informações dessa stream em tempo real
-new OneToHundredStream().pipe(process.stdout)
+// Agora foi adicionado a stream de escrita que nós criamos
+new OneToHundredStream()
+    .pipe(new InverseNumberStream())
+    .pipe(new MultiplyByTenStream())
