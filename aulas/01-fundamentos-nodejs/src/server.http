@@ -1,2 +1,2 @@
 ### Server teste
-GET localhost:3333/users
+POST localhost:3334

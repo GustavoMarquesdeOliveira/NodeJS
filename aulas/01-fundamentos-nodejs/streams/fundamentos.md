@@ -14,3 +14,6 @@
 * Callback é uma função que a stream de escrita precisa chamar quando ela terminou de fazer o que ela precisava
 * Dentro de uma stream de escrita, ela não retorna nada, ela processa o dado
 * A stream de transformação ela obrigatoriamente precisa ler dados de algum lugar e escrever em algum lugar, ela é utilizada para a comunicação de duas outras streams
+* Existe tbm a stream Duplex, que ela pode receber o metedo tanto de _read, quanto de _write, ela pode ser utilizada para leitura de arquivos (ler do arquivo ou escrever do arquivo)
+* 
+* 
