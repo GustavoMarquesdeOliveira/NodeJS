@@ -5,9 +5,23 @@ import http from 'node:http'
 const users = []
 
 // Criando um server com dois parametros (req e res)
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
     // Criando uma const que vai receber os dois retornos que vem do servidor
     const {method, url} = req
+
+    // Vamos pegar as streams em pedaços e salvar dentro desse buffers
+    const buffers = []
+    // Aguarda cada pedaço da stream ser retornado
+    // Com esse const chunk of req, ele esta pegando em pedaços o que vem de req. O for await faz só passar quando o carregamento da stream estiver 100%
+    for await (const chunk of req ){
+        buffers.push(chunk)
+    }
+    try{
+        req.body = JSON.parse(Buffer.concat(buffers).toString())
+    } catch {
+        req.body = null
+    }
+
 
     // Metodo de GET está buscando informações do servidor
     if (method === 'GET' && url === '/users') {
@@ -23,16 +37,14 @@ const server = http.createServer((req, res) => {
     }
     // Metodo POST está criando informação no servidor, se fosse uma atualização dessas informações o metodo seria o PATCH
     if (method === 'POST' && url === '/users') {
+
+        const {name, email} = req.body
+
         // Está adicionando em users essas informações passadas com o push
         users.push({
                 id: 1,
-                name: 'John Doe',
-                email: 'jonhdoe@example.com',
-            },
-            {
-                id: 2,
-                name: 'Mark Doe',
-                email: 'markdoe@example.com',
+                name,
+                email,
             }
         )
         // Está retornando um status code 201 que seria o status code de sucesso na criação
